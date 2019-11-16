@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "s3-public-read" {
   }
 }
 
-resource "aws_s3_bucket_policy" "" {
+resource "aws_s3_bucket_policy" "site-s3-bucket-policy" {
   bucket = "${aws_s3_bucket.site-bucket.id}"
   policy = "${data.aws_iam_policy_document.s3-public-read.json}"
 }
