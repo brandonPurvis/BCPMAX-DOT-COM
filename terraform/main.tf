@@ -29,12 +29,12 @@ data "aws_iam_policy_document" "s3-public-read" {
 }
 
 resource "aws_s3_bucket_policy" "site-s3-bucket-policy" {
-  bucket = "${aws_s3_bucket.site-bucket.id}"
-  policy = "${data.aws_iam_policy_document.s3-public-read.json}"
+  bucket = aws_s3_bucket.site-bucket.id
+  policy = data.aws_iam_policy_document.s3-public-read.json
 }
 
 resource "aws_s3_bucket" "site-bucket" {
-  bucket = "${var.site-name}"
+  bucket = var.site-name
   acl = "public-read"
   website {
     index_document = "index.html"
@@ -45,14 +45,14 @@ resource "aws_s3_bucket" "site-bucket" {
 resource "aws_s3_bucket" "site-linking-bucket" {
   bucket = "www.${var.site-name}"
   website {
-    redirect_all_requests_to = "${aws_s3_bucket.site-bucket.bucket}"
+    redirect_all_requests_to = aws_s3_bucket.site-bucket.bucket
   }
 }
 
 
 // Output
 output "region" {
-  value = "${data.aws_region.current}"
+  value = data.aws_region.current
 }
 
 output "buckets" {
