@@ -56,7 +56,7 @@ resource "aws_s3_bucket_object" "site-index-file" {
   bucket = aws_s3_bucket.site-bucket.bucket
   key = "index.html"
   source = "../src/index.html"
-  etag = "${filemd5("../src/index.html")}"
+  etag = filemd5("../src/index.html")
 }
 
 
