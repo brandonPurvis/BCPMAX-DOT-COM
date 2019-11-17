@@ -50,7 +50,39 @@ resource "aws_s3_bucket" "site-linking-bucket" {
 }
 
 
+// Route 53
+
+data "aws_route53_zone" "hosted-zone" {
+  name = "${var.site-name}."
+}
+
+resource "aws_route53_record" "site-a-record" {
+  zone_id = data.aws_route53_zone.hosted-zone.id
+  name = var.site-name
+  type = "A"
+
+  alias {
+    name = "${aws_s3_bucket.site-bucket.website_domain}"
+    zone_id = "${aws_s3_bucket.site-bucket.hosted_zone_id}"
+    evaluate_target_health = false
+  }
+}
+
+resource "aws_route53_record" "site-linking-a-record" {
+  zone_id = data.aws_route53_zone.hosted-zone.id
+  name = "www.${var.site-name}"
+  type = "A"
+
+  alias {
+    name = "${aws_s3_bucket.site-linking-bucket.website_domain}"
+    zone_id = "${aws_s3_bucket.site-linking-bucket.hosted_zone_id}"
+    evaluate_target_health = false
+  }
+}
+
+
 // Output
+
 output "region" {
   value = data.aws_region.current
 }
