@@ -57,6 +57,7 @@ resource "aws_s3_bucket_object" "site-index-file" {
   key = "index.html"
   source = "../src/index.html"
   etag = filemd5("../src/index.html")
+  content_type = "text/html"
 }
 
 
