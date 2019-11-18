@@ -60,6 +60,13 @@ resource "aws_s3_bucket_object" "site-index-file" {
   content_type = "text/html"
 }
 
+resource "aws_s3_bucket_object" "site-background-file" {
+  bucket = aws_s3_bucket.site-bucket.bucket
+  key = "images/controllers2.png"
+  source = "../src/images/controllers2.png"
+  etag = filemd5("../src/images/controllers2.png")
+}
+
 
 // Route 53
 
