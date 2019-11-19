@@ -62,7 +62,7 @@ resource "aws_s3_bucket_object" "site-html-file" {
 }
 
 resource "aws_s3_bucket_object" "site-other-files" {
-  for_each = fileset("../src", "**.{css,js,png,jpg}")
+  for_each = fileset("../src", "**")
   bucket = aws_s3_bucket.site-bucket.bucket
   key = each.key
   source = "../src/${each.key}"
