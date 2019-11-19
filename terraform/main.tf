@@ -59,6 +59,7 @@ resource "aws_s3_bucket_object" "site-html-file" {
   source = "../src/${each.key}"
   etag = filemd5("../src/${each.key}")
   content_type = "text/html"
+  depends_on = [aws_s3_bucket_object.site-other-files]
 }
 
 resource "aws_s3_bucket_object" "site-other-files" {
