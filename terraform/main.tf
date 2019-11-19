@@ -59,7 +59,6 @@ resource "aws_s3_bucket_object" "site-html-file" {
   source = "../src/${each.key}"
   etag = filemd5("../src/${each.key}")
   content_type = "${substr(strrev(each.key), 0, 4) == "lmth" ? "text/html" : "application/octet-stream"}"
-  depends_on = [aws_s3_bucket_object.site-other-files]
 }
 
 // Route 53
