@@ -53,23 +53,13 @@ resource "aws_s3_bucket" "site-linking-bucket" {
 // S3 content
 
 resource "aws_s3_bucket_object" "site-html-file" {
-  for_each = fileset("../src", "**.html")
-  bucket = aws_s3_bucket.site-bucket.bucket
-  key = each.key
-  source = "../src/${each.key}"
-  etag = filemd5("../src/${each.key}")
-  content_type = "text/html"
-  depends_on = [aws_s3_bucket_object.site-other-files]
-}
-
-resource "aws_s3_bucket_object" "site-other-files" {
   for_each = fileset("../src", "**")
   bucket = aws_s3_bucket.site-bucket.bucket
   key = each.key
   source = "../src/${each.key}"
   etag = filemd5("../src/${each.key}")
+  content_type = "${substr(strrev(each.key), 0, 4) == "lmth" ? "text/html" : "application/octet-stream"}"
 }
-
 
 // Route 53
 
