@@ -52,19 +52,21 @@ resource "aws_s3_bucket" "site-linking-bucket" {
 
 // S3 content
 
-resource "aws_s3_bucket_object" "site-index-file" {
+resource "aws_s3_bucket_object" "site-html-file" {
+  for_each = fileset("../src", "**.html")
   bucket = aws_s3_bucket.site-bucket.bucket
-  key = "index.html"
-  source = "../src/index.html"
-  etag = filemd5("../src/index.html")
+  key = each.key
+  source = "../src/${each.key}"
+  etag = filemd5("../src/${each.key}")
   content_type = "text/html"
 }
 
-resource "aws_s3_bucket_object" "site-background-file" {
+resource "aws_s3_bucket_object" "site-other-files" {
+  for_each = fileset("../src", "**.{css,js,png,jpg}")
   bucket = aws_s3_bucket.site-bucket.bucket
-  key = "images/controllers2.png"
-  source = "../src/images/controllers2.png"
-  etag = filemd5("../src/images/controllers2.png")
+  key = each.key
+  source = "../src/${each.key}"
+  etag = filemd5("../src/${each.key}")
 }
 
 
