@@ -21,6 +21,16 @@ body {
     opacity: 0.5;
 }
 
+.big {
+  color:grey;
+  font-size:3em;
+}
+
+.bigger {
+  color:grey;
+  font-size:4em;
+}
+
 @-webkit-keyframes pulsate {
     0% {
         opacity: 0.0;
