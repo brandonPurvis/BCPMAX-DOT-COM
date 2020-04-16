@@ -33,13 +33,22 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns:repeat(3, 1fr);
+  grid-template-column: 3fr;
   grid-gap: 1em;
+  grid-auto-flow: column dense;
+
+}
+
+.grid img {
+  width: 100%;
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #6f6f6f;
+  box-shadow: 0 4px 8px 0 rgb(74, 74, 74);
   transition: 0.3s;
+  padding: 1em;
+  width:300px;
 }
 
 @-webkit-keyframes pulsate {
