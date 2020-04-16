@@ -17,23 +17,25 @@ function getPlaylist() {
   return JSON.parse(response);
 }
 
-var playlist = getPlaylist();
+function main() {
+    var playlist = getPlaylist();
 
-console.log(playlist);
+    console.log(playlist);
 
-var app = new Vue({
-	el: "#main",
-  data: {
-    playlist: playlist["playlist"]
-  },
-  methods: {
-  	getVideoURL: function (videoid) {
-      var url = "https://youtu.be/" + videoid;
-      return url;
-    },
-    getThumbnailURL: function (videoid) {
-      var url = "https://img.youtube.com/vi/" + videoid + "/0.jpg";
-      return url;
-    }
-  }
-})
+    var app = new Vue({
+        el: "#main",
+      data: {
+        playlist: playlist["playlist"]
+      },
+      methods: {
+        getVideoURL: function (videoid) {
+          var url = "https://youtu.be/" + videoid;
+          return url;
+        },
+        getThumbnailURL: function (videoid) {
+          var url = "https://img.youtube.com/vi/" + videoid + "/0.jpg";
+          return url;
+        }
+      }
+    })
+}
