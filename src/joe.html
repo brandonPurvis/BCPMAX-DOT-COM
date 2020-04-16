@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Brandon Purvis</title>
+        <link href="https://fonts.googleapis.com/css?family=Muli:200&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script src="js/joe.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <ul class="grid">
+                <div
+                    is="playlist-item"
+                    v-for="(item, index) in playlist"
+                    v-bind:index="index"
+                    v-bind:id="item.name"
+                    v-bind:name="item.name"
+                    v-bind:link="getVideoURL(item.videoid)"
+                    v-bind:image="getThumbnailURL(item.videoid)"
+                ></div>
+            </ul>
+        </div>
+    </body>
+</html>
