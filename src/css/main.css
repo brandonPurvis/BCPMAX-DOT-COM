@@ -33,7 +33,7 @@ body {
 
 .grid {
   display: grid;
-  grid-template-column: 3fr;
+  grid-template-column: repeat(3, 1fr);
   grid-gap: 1em;
   grid-auto-flow: column dense;
 
