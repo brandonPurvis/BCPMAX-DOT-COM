@@ -8,6 +8,15 @@ Vue.component("playlist-item", {
             '</div>'
 });
 
+function getPlaylist() {
+	var theUrl = "https://raw.githubusercontent.com/bcpmax/BidenPlaylist/master/playlist.json";
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "GET", theUrl, false );
+  xmlHttp.send(null);
+  var response = xmlHttp.responseText;
+  return JSON.parse(response);
+}
+
 var playlist = getPlaylist();
 
 console.log(playlist);
