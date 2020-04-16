@@ -1,0 +1,48 @@
+.card-text {
+  font-style: normal;
+  font-variant-ligatures: normal;
+  font-variant-caps: normal;
+  font-variant-numeric: normal;
+  font-variant-east-asian: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-size: 1.5em;
+  line-height: 34px;
+  font-family: brother-1816, sans-serif;
+  padding-left:10px;
+}
+
+a {
+  text-decoration: none;
+  color: #111;
+}
+
+body {
+   background-image:url('http://brandonpurvis.com/images/controllers2.png');
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: cover;
+}
+
+.grid {
+  background-color: hsla(210, 9%, 40%, .80);
+  height: 100%;
+  display: grid;
+  grid-template-columns:repeat(auto-fit, 400px);
+  grid-gap: 15px;
+  padding-top:10px;
+  padding-bottom:10px;
+
+}
+
+.card {
+  background-color: hsl(210, 9%, 40%);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
